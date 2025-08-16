@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Subject Details{% endblock %}
+{% block content %}
+<h1>Subject: {{ object.name }}</h1>
+
+<a href="{% url 'subject_update' object.pk %}" class="btn">Edit</a>
+<a href="{% url 'subject_delete' object.pk %}" class="btn" style="background-color:#e74c3c;">Delete</a>
+<a href="{% url 'subject_list' %}" class="btn" style="background-color:#555;">Back to List</a>
+{% endblock %}

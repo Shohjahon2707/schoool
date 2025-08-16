@@ -1,0 +1,15 @@
+
+<!-- schoool/templates/form.html -->
+{% extends "base.html" %}
+{% block title %}Form{% endblock %}
+{% block content %}
+<h2>{{ model_name }} Form</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">💾 Save</button>
+</form>
+
+<a href="{{ cancel_url }}">Cancel</a>
+{% endblock %}

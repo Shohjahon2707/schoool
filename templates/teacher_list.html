@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Teachers List{% endblock %}
+{% block content %}
+<h1>Teachers List</h1>
+<a href="{% url 'teacher_create' %}" class="btn">➕ Add Teacher</a>
+<table border="1" cellpadding="5" cellspacing="0" style="width:100%; margin-top:10px;">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Subjects</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for teacher in object_list %}
+        <tr>
+            <td>
+            {% if teacher.pfp %}
+                <img src="{{ teacher.pfp.url }}" alt="{{ teacher.first_name }}" width="50">
+            {% else %}
+                No photo
+            {% endif %}
+            </td>
+            <td><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.first_name }} {{ teacher.last_name }}</a></td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.phone_number }}</td>
+            <td>
+                {% for subj in teacher.subject.all %}
+                    {{ subj.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    No subjects
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'teacher_update' teacher.pk %}">Edit</a> |
+                <a href="{% url 'teacher_delete' teacher.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">No teachers found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

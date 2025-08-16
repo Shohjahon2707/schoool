@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Students List{% endblock %}
+{% block content %}
+<h1>Students List</h1>
+<a href="{% url 'student_create' %}" class="btn">➕ Add Student</a>
+<table border="1" cellpadding="5" cellspacing="0" style="width:100%; margin-top: 10px;">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for student in object_list %}
+        <tr>
+            <td>
+            {% if student.pfp %}
+                <img src="{{ student.pfp.url }}" alt="{{ student.first_name }}" width="50">
+            {% else %}
+                No photo
+            {% endif %}
+            </td>
+            <td><a href="{% url 'student_detail' student.pk %}">{{ student.first_name }} {{ student.last_name }}</a></td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone_number }}</td>
+            <td>
+                <a href="{% url 'student_update' student.pk %}">Edit</a> |
+                <a href="{% url 'student_delete' student.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="5">No students found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

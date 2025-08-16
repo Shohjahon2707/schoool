@@ -1,0 +1,18 @@
+<!-- schoool/templates/list.html -->
+{% extends "base.html" %}
+{% block title %}List{% endblock %}
+{% block content %}
+<h2>{{ model_name }} List</h2>
+
+<a href="{{ create_url }}" class="btn">➕ Add {{ model_name }}</a>
+
+<ul>
+    {% for obj in object_list %}
+        <li>
+            <a href="{{ obj.get_absolute_url }}">{{ obj }}</a>
+        </li>
+    {% empty %}
+        <li>No {{ model_name|lower }}s found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

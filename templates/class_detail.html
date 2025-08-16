@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Class Details{% endblock %}
+{% block content %}
+<h1>Class: {{ object.name }}</h1>
+<ul>
+    <li><strong>Capacity:</strong> {{ object.capacity }}</li>
+    <li><strong>Major:</strong> {{ object.major|default:"-" }}</li>
+    <li><strong>Curator:</strong> <a href="{% url 'teacher_detail' object.curator.pk %}">{{ object.curator.first_name }} {{ object.curator.last_name }}</a></li>
+    <li><strong>Room Number:</strong> {{ object.room_number }}</li>
+</ul>
+
+<a href="{% url 'class_update' object.pk %}" class="btn">Edit</a>
+<a href="{% url 'class_delete' object.pk %}" class="btn" style="background-color:#e74c3c;">Delete</a>
+<a href="{% url 'class_list' %}" class="btn" style="background-color:#555;">Back to List</a>
+{% endblock %}

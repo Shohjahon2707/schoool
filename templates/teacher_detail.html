@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Teacher Details{% endblock %}
+{% block content %}
+<h1>Teacher: {{ object.first_name }} {{ object.last_name }}</h1>
+{% if object.pfp %}
+    <img src="{{ object.pfp.url }}" alt="{{ object.first_name }}" width="150" style="margin-bottom:10px;">
+{% endif %}
+<ul>
+    <li><strong>Email:</strong> {{ object.email }}</li>
+    <li><strong>Phone:</strong> {{ object.phone_number }}</li>
+    <li><strong>Subjects:</strong>
+        {% for subj in object.subject.all %}
+            {{ subj.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            None
+        {% endfor %}
+    </li>
+</ul>
+
+<a href="{% url 'teacher_update' object.pk %}" class="btn">Edit</a>
+<a href="{% url 'teacher_delete' object.pk %}" class="btn" style="background-color:#e74c3c;">Delete</a>
+<a href="{% url 'teacher_list' %}" class="btn" style="background-color:#555;">Back to List</a>
+{% endblock %}

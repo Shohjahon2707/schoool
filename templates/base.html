@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}School App{% endblock %}</title>
+    <style>
+        /* Reset и базовые стили */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #202124;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #4285f4;
+            color: white;
+            padding: 16px 24px;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-weight: 400;
+            font-size: 1.5rem;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #2a6bed;
+            outline: none;
+        }
+        main {
+            flex: 1 0 auto;
+            padding: 24px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover,
+        .btn:focus {
+            background-color: #155ab6;
+            outline: none;
+        }
+        footer {
+            flex-shrink: 0;
+            background-color: #f1f3f4;
+            color: #5f6368;
+            text-align: center;
+            padding: 14px 24px;
+            font-size: 0.9rem;
+            box-shadow: inset 0 1px 0 #dadce0;
+        }
+        /* Ссылки в footer */
+        footer a {
+            color: #5f6368;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎓 School Management System</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'student_list' %}">Students</a></li>
+            <li><a href="{% url 'teacher_list' %}">Teachers</a></li>
+            <li><a href="{% url 'class_list' %}">Classes</a></li>
+            <li><a href="{% url 'subject_list' %}">Subjects</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>&copy; {{ year|default:"2025" }} SchoolApp. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

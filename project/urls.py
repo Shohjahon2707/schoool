@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponse  
-
-def home_view(request):             
-    return HttpResponse("Добро пожаловать на главную страницу!")
+from apps.lessons.views import home_view  # если в этом же модуле
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('lessons/', include('apps.lessons.urls')),
-    path('', home_view, name='home'),   
+    path('', home_view, name='home'),
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

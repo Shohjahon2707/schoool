@@ -115,12 +115,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-import os 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'project/static')
+    BASE_DIR / 'static',  # Здесь ХРАНЯТСЯ твои исходные CSS/JS и т.п.
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Django будет собирать сюда всё при collectstatic
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # Default primary key field type

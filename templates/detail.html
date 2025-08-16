@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ model_name }} Details{% endblock %}
+{% block content %}
+<h2>{{ model_name }} Details</h2>
+
+<ul>
+    {% for label, value in fields %}
+        {% if value %}
+        <li><strong>{{ label }}:</strong> 
+            {% if label == 'Photo' %}
+                <img src="{{ value }}" alt="photo" width="150">
+            {% else %}
+                {{ value }}
+            {% endif %}
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<a href="{{ update_url }}" class="btn">✏️ Edit</a>
+<a href="{{ delete_url }}" class="btn" style="background:#f44336;">🗑 Delete</a>
+<a href="{% url model_name|lower|add:'_list' %}" class="btn">🔙 Back</a>
+{% endblock %}

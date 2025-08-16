@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Classes List{% endblock %}
+{% block content %}
+<h1>Classes List</h1>
+<a href="{% url 'class_create' %}" class="btn">➕ Add Class</a>
+<table border="1" cellpadding="5" cellspacing="0" style="width:100%; margin-top:10px;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Major</th>
+            <th>Curator</th>
+            <th>Room Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for class in object_list %}
+        <tr>
+            <td><a href="{% url 'class_detail' class.pk %}">{{ class.name }}</a></td>
+            <td>{{ class.capacity }}</td>
+            <td>{{ class.major|default:"-" }}</td>
+            <td><a href="{% url 'teacher_detail' class.curator.pk %}">{{ class.curator.first_name }} {{ class.curator.last_name }}</a></td>
+            <td>{{ class.room_number }}</td>
+            <td>
+                <a href="{% url 'class_update' class.pk %}">Edit</a> |
+                <a href="{% url 'class_delete' class.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">No classes found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
