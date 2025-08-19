@@ -7,7 +7,8 @@ from django.urls import reverse
 
 class Subject(BaseModel):
     name = models.CharField(max_length=200)
-
+    def get_absolute_url(self):
+        return reverse('class_detail', kwargs={'pk': self.pk})
     def __str__(self):
         return self.name
 class Teacher(BaseModel):
@@ -17,6 +18,9 @@ class Teacher(BaseModel):
     phone_number = models.CharField(max_length=20)
     pfp = models.ImageField(upload_to='students/pfps')
     subject = models.ManyToManyField(Subject)
+    def get_absolute_url(self):
+        return reverse('teacher_detail', kwargs={'pk': self.pk})
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -29,6 +33,8 @@ class Class(BaseModel):
 
     def __str__(self):
         return f"{self.name} (Room {self.room_number})"
+    def get_absolute_url(self):
+        return reverse('class_detail', kwargs={'pk': self.pk})
 
 class Student(BaseModel):
     first_name = models.CharField(max_length=200)
