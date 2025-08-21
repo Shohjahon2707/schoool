@@ -93,13 +93,57 @@
         </div>
     {% endif %}
 
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
+    
+        <!-- Обязательные поля -->
         <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="first_name" placeholder="Ismingiz" required>
+        <input type="text" name="last_name" placeholder="Familiyangiz" required>
+        <input type="text" name="phone_number" placeholder="Telefon raqam" required>
         <input type="password" name="password" placeholder="Parol" required>
         <input type="password" name="password2" placeholder="Parolni tasdiqlang" required>
+    
+        <!-- Необязательные поля -->
+        <select name="gender">
+            <option value="">Jinsi (ixtiyoriy)</option>
+            <option value="MALE">Erkak</option>
+            <option value="FEMALE">Ayol</option>
+        </select>
+    
+        <select name="shift">
+            <option value="">Smena (ixtiyoriy)</option>
+            <option value="MORNING_SHIFT">Ertalabgi</option>
+            <option value="DAY_SHIFT">Kunduzgi</option>
+            <option value="NIGHT_SHIFT">Kechgi</option>
+        </select>
+    
+        <select name="study_lang">
+            <option value="">O‘qish tili (ixtiyoriy)</option>
+            <option value="UZBEK">O‘zbek</option>
+            <option value="RUSSIAN">Rus</option>
+            <option value="ENGLISH">Ingliz</option>
+        </select>
+    
+        <input type="text" name="address" placeholder="Manzil (ixtiyoriy)">
+        
+        <select name="blood_group">
+            <option value="">Qon guruhi (ixtiyoriy)</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+    
+        <textarea name="bio" placeholder="O'zingiz haqingizda (ixtiyoriy)"></textarea>
+    
         <button type="submit">Ro'yxatdan o'tish</button>
     </form>
+    
 
     <a href="{% url 'home' %}" class="home-link">🏠 Bosh sahifa</a>
 </div>
