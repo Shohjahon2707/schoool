@@ -20,6 +20,7 @@ from apps.lessons.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', include('apps.users.urls')),
     path('lessons/', include('apps.lessons.urls')),
     path('', home_view, name='home'),
 ]

@@ -108,14 +108,23 @@
 <header>
     <h1>🎓 School Management System</h1>
     <nav>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'student_list' %}">Students</a></li>
-            <li><a href="{% url 'teacher_list' %}">Teachers</a></li>
-            <li><a href="{% url 'class_list' %}">Classes</a></li>
-            <li><a href="{% url 'subject_list' %}">Subjects</a></li>
-        </ul>
-    </nav>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- Левая часть меню -->
+            <ul style="display: flex; gap: 20px;">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'student_list' %}">Students</a></li>
+                <li><a href="{% url 'teacher_list' %}">Teachers</a></li>
+                <li><a href="{% url 'class_list' %}">Classes</a></li>
+                <li><a href="{% url 'subject_list' %}">Subjects</a></li>
+            </ul>
+    
+            <!-- Правая часть меню -->
+            <div style="display: flex; gap: 10px;">
+                <a href="{% url 'login' %}" class="btn">Zayti</a>
+                <a href="{% url 'register' %}" class="btn">Registratsiya</a>
+            </div>
+        </div>
+    </nav>    
 </header>
 
 <main>
